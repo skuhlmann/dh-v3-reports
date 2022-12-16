@@ -24,9 +24,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   </React.StrictMode>
 );
 
-// useQuery for dao proposals and members
-// form elements to select entity and fire it
-// could start without filtering and fetch all - no pagination
 // simplest display table
 // csv download
 // stretch:

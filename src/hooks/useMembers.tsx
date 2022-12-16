@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 
 import { ValidNetwork } from "@daohaus/keychain-utils";
-import { listProposals, MolochV3Proposal } from "@daohaus/moloch-v3-data";
+import { listMembers, MolochV3Members } from "@daohaus/moloch-v3-data";
 
 const graphApiKeys = { "0x1": import.meta.env.VITE_GRAPH_API_KEY_MAINNET };
 
-const fetchProposals = async ({
+const fetchMembers = async ({
   daoId,
   chainId,
 }: {
@@ -13,7 +13,7 @@ const fetchProposals = async ({
   chainId: ValidNetwork;
 }) => {
   try {
-    return listProposals({
+    return listMembers({
       networkId: chainId,
       graphApiKeys: graphApiKeys,
       filter: {
@@ -27,17 +27,17 @@ const fetchProposals = async ({
   }
 };
 
-export const useProposals = ({
+export const useMembers = ({
   daoId,
   chainId,
 }: {
   daoId: string;
   chainId: ValidNetwork;
-}): { items: MolochV3Proposal[] | undefined } => {
+}): { items: MolochV3Members | undefined } => {
   const { data, ...rest } = useQuery(
     ["recordData", { daoId, chainId }],
     () =>
-      fetchProposals({
+      fetchMembers({
         daoId,
         chainId: chainId as ValidNetwork,
       }),
