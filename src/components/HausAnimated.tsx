@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import hausBlockAnimated from '../assets/hausBlockAnimated.svg';
+import React from "react";
+import styled from "styled-components";
+import { RiFileList3Line } from "react-icons/ri";
 
 const ImageContainer = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ export const HausAnimated = () => {
   return (
     <ImageContainer>
       <div className="img-block">
-        <img src={hausBlockAnimated} />
+        <RiFileList3Line className="img-block" />
       </div>
     </ImageContainer>
   );

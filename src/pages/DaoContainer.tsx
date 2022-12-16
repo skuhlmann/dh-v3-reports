@@ -1,18 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useDHConnect } from "@daohaus/connect";
-import { H2, ParMd, SingleColumnLayout } from "@daohaus/ui";
-
-const graphApiKeys = { "0x1": process.env["NX_GRAPH_API_KEY_MAINNET"] };
+import { ValidNetwork } from "@daohaus/keychain-utils";
+import Dao from "./Dao";
 
 export function DaoContainer() {
   const { daochain, daoid } = useParams();
 
-  return (
-    <SingleColumnLayout>
-      <H2>DAO page</H2>
-      <ParMd style={{ marginBottom: "2.4rem" }}>daoid: {daoid}</ParMd>
-    </SingleColumnLayout>
-  );
+  if (!daoid || !daochain) return null;
+
+  return <Dao daoid={daoid} daochain={daochain as ValidNetwork} />;
 }
 
 export default DaoContainer;

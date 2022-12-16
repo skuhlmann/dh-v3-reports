@@ -1,11 +1,4 @@
-import {
-  Button,
-  H2,
-  Input,
-  Link,
-  ParMd,
-  SingleColumnLayout,
-} from "@daohaus/ui";
+import { Button, H2, Input, ParMd, SingleColumnLayout } from "@daohaus/ui";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -27,20 +20,16 @@ export const Home = () => {
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
     // TODO: validate url
 
-    console.log("whaaa");
     setDaoUrl((prevState) =>
       prevState === event.target.value ? "" : event.target.value
     );
   };
 
   const handleGo = () => {
+    // TODO: validate url
+
     const daochain = daoUrl.split("molochv3")[1].split("/")[1];
     const daoid = daoUrl.split("molochv3")[1].split("/")[2];
-    console.log(
-      'daoUrl.split("molochv3")[1].split("/")',
-      daoUrl.split("molochv3")[1].split("/")
-    );
-    console.log("daoid", daoid, daochain);
     navigate(`/molochv3/${daochain}/${daoid}`);
   };
 

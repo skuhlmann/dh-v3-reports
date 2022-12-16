@@ -1,25 +1,31 @@
-import { DHConnectProvider } from "@daohaus/connect";
-import { HausThemeProvider } from "@daohaus/ui";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+import { HausThemeProvider } from "@daohaus/ui";
+import { DHConnectProvider } from "@daohaus/connect";
+
 import { Routes } from "./Routes";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <HashRouter>
       <HausThemeProvider>
         <DHConnectProvider>
-          <Routes />
+          <QueryClientProvider client={queryClient}>
+            <Routes />
+          </QueryClientProvider>
         </DHConnectProvider>
       </HausThemeProvider>
     </HashRouter>
   </React.StrictMode>
 );
 
-// home - enter your dao url and redirect
-// dao specific routing
-// useQuery for proposals and members
+// useQuery for dao proposals and members
+// form elements to select entity and fire it
 // could start without filtering and fetch all - no pagination
 // simplest display table
 // csv download
