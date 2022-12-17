@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   </React.StrictMode>
 );
 
-// simplest display table
+// parse out bs data or truncate
 // csv download
 // stretch:
 // // select columns

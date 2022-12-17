@@ -12,6 +12,7 @@ import {
 import { useDao } from "../hooks/useDao";
 import { ReportSelect } from "../components/ReportSelect";
 import { useState } from "react";
+import { Report } from "../components/Report";
 
 const AvatarBox = styled.div`
   display: flex;
@@ -55,6 +56,8 @@ export function Dao({
       <Controls>
         <ReportSelect report={report} setReport={setReport} />
       </Controls>
+
+      {report && <Report report={report} daochain={daochain} daoid={daoid} />}
     </SingleColumnLayout>
   );
 }

@@ -19,7 +19,7 @@ const fetchMembers = async ({
       filter: {
         dao: daoId,
       },
-      paging: { pageSize: 1000, offset: 0 },
+      paging: { pageSize: 999, offset: 0 },
     });
   } catch (error: any) {
     console.error(error);
@@ -33,9 +33,9 @@ export const useMembers = ({
 }: {
   daoId: string;
   chainId: ValidNetwork;
-}): { items: MolochV3Members | undefined } => {
+}): { members: MolochV3Members | undefined } => {
   const { data, ...rest } = useQuery(
-    ["recordData", { daoId, chainId }],
+    ["members", { daoId, chainId }],
     () =>
       fetchMembers({
         daoId,
@@ -44,5 +44,5 @@ export const useMembers = ({
     { enabled: !!daoId && !!chainId }
   );
 
-  return { items: data?.items };
+  return { members: data?.items };
 };

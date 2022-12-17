@@ -1,4 +1,11 @@
-import { Button, H2, Input, ParMd, SingleColumnLayout } from "@daohaus/ui";
+import {
+  Button,
+  DataXs,
+  H2,
+  Input,
+  ParMd,
+  SingleColumnLayout,
+} from "@daohaus/ui";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -13,24 +20,28 @@ const LinkBox = styled.div`
   align-items: center;
 `;
 
+const AdminRegEx =
+  /https:\/\/admin.daohaus.fun\/#\/molochv3\/[a-zA-Z0-9()]+\/[a-zA-Z0-9()]{42}/;
+
 export const Home = () => {
   const [daoUrl, setDaoUrl] = useState<string>("");
+  const [invalid, setInvalid] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
-    // TODO: validate url
-
     setDaoUrl((prevState) =>
       prevState === event.target.value ? "" : event.target.value
     );
   };
 
   const handleGo = () => {
-    // TODO: validate url
-
-    const daochain = daoUrl.split("molochv3")[1].split("/")[1];
-    const daoid = daoUrl.split("molochv3")[1].split("/")[2];
-    navigate(`/molochv3/${daochain}/${daoid}`);
+    if (daoUrl && daoUrl.match(AdminRegEx)) {
+      const daochain = daoUrl.split("molochv3")[1].split("/")[1];
+      const daoid = daoUrl.split("molochv3")[1].split("/")[2];
+      navigate(`/molochv3/${daochain}/${daoid}`);
+    } else {
+      setInvalid(true);
+    }
   };
 
   return (
@@ -38,7 +49,8 @@ export const Home = () => {
       <H2>DAOhaus V3 Reports</H2>
       <HausAnimated />
       <ParMd style={{ marginBottom: "2.4rem" }}>
-        Get started by pasting your DAO admin app url below
+        Really just some CSV dumps, but get started by pasting your DAO admin
+        app url below!
       </ParMd>
       <LinkBox>
         <Input
@@ -51,6 +63,9 @@ export const Home = () => {
         <Button onClick={handleGo} disabled={daoUrl === ""}>
           GO
         </Button>
+        {invalid && (
+          <DataXs color="red">Doesn't look like a DAOhaus admin url</DataXs>
+        )}
       </LinkBox>
     </SingleColumnLayout>
   );

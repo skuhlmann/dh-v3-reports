@@ -35,7 +35,7 @@ export const useDao = ({
   chainId: ValidNetwork;
 }): { dao: MolochV3Dao | undefined } => {
   const { data, ...rest } = useQuery(
-    ["recordData", { daoId, chainId }],
+    ["dao", { daoId, chainId }],
     () =>
       fetchDao({
         daoId,

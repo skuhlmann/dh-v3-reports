@@ -19,7 +19,7 @@ const fetchProposals = async ({
       filter: {
         dao: daoId,
       },
-      paging: { pageSize: 1000, offset: 0 },
+      paging: { pageSize: 999, offset: 0 },
     });
   } catch (error: any) {
     console.error(error);
@@ -33,9 +33,9 @@ export const useProposals = ({
 }: {
   daoId: string;
   chainId: ValidNetwork;
-}): { items: MolochV3Proposal[] | undefined } => {
+}): { proposals: MolochV3Proposal[] | undefined } => {
   const { data, ...rest } = useQuery(
-    ["recordData", { daoId, chainId }],
+    ["proposals", { daoId, chainId }],
     () =>
       fetchProposals({
         daoId,
@@ -44,5 +44,5 @@ export const useProposals = ({
     { enabled: !!daoId && !!chainId }
   );
 
-  return { items: data?.items };
+  return { proposals: data?.items };
 };
