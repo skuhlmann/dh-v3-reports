@@ -25,6 +25,7 @@ const Controls = styled.div`
   justify-content: center;
   width: 100%;
   margin-top: 2rem;
+  margin-bottom: 3rem;
 `;
 
 export function Dao({

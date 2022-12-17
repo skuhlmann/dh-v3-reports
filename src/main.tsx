@@ -24,8 +24,6 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   </React.StrictMode>
 );
 
-// parse out bs data or truncate
-// csv download
 // stretch:
 // // select columns
 // // filtering: write it in a field?
