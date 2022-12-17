@@ -1,7 +1,7 @@
 export const prepCsvData = (list: any) => {
   const header = Object.keys(list[0]).join(",");
   const values = list
-    .map((o) => {
+    .map((o: string) => {
       return Object.values(o)
         .map((val) => (val === null ? `""` : `"${val}"`))
         .join(",");
